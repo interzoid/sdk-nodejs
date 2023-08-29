@@ -12,7 +12,7 @@ import { CompanyNameMatchKeyRequest } from '../models/CompanyNameMatchKeyRequest
  * @param {FullNameMatchKeyRequest} request
  * @returns {Promise<MatchKeyResponse>}
  */
-export async function getFullNameMatchKey(
+export async function getCompanyNameMatchKey(
   request: CompanyNameMatchKeyRequest,
 ): Promise<MatchKeyResponse> {
   const config = {
