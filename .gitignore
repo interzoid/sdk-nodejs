@@ -1,3 +1,15 @@
-.idea
+# Node modules
+node_modules/
+dist/
+
+.env*
+
+.idea/
 *.iml
-node_modules
+.vscode/
+
+*.log
+*.tmp
+*.swp
+coverage/
+.nyc_output/
