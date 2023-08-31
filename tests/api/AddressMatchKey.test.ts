@@ -1,7 +1,9 @@
 import axios, { AxiosHeaders, AxiosResponse } from 'axios';
-import { getAddressMatchKey } from '../../src/api/AddressMatchKey';
-import { AddressMatchKeyRequest } from '../../src/interfaces/AddressMatchKeyRequest';
-import { MatchKeyResponse } from '../../src/interfaces/MatchKeyResponse';
+import {
+  AddressMatchKeyRequest,
+  getAddressMatchKey,
+  MatchKeyResponse,
+} from '../../src';
 
 jest.mock('axios');
 
