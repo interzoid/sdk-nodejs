@@ -1,6 +1,6 @@
-import axios, { AxiosResponse } from 'axios';
-import { MatchKeyResponse } from '../models/MatchKeyResponse';
-import { FullNameMatchKeyRequest } from '../models/FullNameMatchKeyRequest';
+import { MatchKeyResponse } from '../interfaces/MatchKeyResponse';
+import { FullNameMatchKeyRequest } from '../interfaces/FullNameMatchKeyRequest';
+import { InterzoidApi } from './InterzoidApi';
 
 /**
  * This API provides a hashed similarity key from the input data used to match
@@ -15,51 +15,14 @@ import { FullNameMatchKeyRequest } from '../models/FullNameMatchKeyRequest';
 export async function getFullNameMatchKey(
   request: FullNameMatchKeyRequest,
 ): Promise<MatchKeyResponse> {
-  const config = {
-    headers: {
-      'x-api-key': request.apiKey,
-    },
-  };
-
-  let response: AxiosResponse;
+  const resource = 'getfullnamematch';
 
   try {
-    const url = `https://api.interzoid.com/getfullnamematch?fullname=${request.fullName}`;
-    response = await axios.get(url, config);
+    const resp = await InterzoidApi.doGetRequest(resource, request.apiKey, {
+      fullname: request.fullName,
+    });
+    return resp as MatchKeyResponse;
   } catch (error) {
-    throw new Error(`Network or server error: ${error}`);
-  }
-
-  switch (response.status) {
-    case 200:
-      if (response.data && response.data.simKey) {
-        return {
-          simKey: response.data.simKey,
-          code: response.data.code,
-          credits: response.data.credits,
-        };
-      } else {
-        throw new Error('Invalid response structure');
-      }
-    case 400:
-      throw new Error(
-        'Bad Request: The server could not understand the request.',
-      );
-    case 402:
-      throw new Error('Credits Exhausted: You have run out of credits.');
-    case 403:
-      throw new Error(
-        'Invalid API key: You do not have permission to use this resource.',
-      );
-    case 405:
-      throw new Error(
-        'Method Not Allowed: The resource does not support the specified HTTP verb.',
-      );
-    case 500:
-      throw new Error(
-        'Internal Server Error: An error occurred on the server.',
-      );
-    default:
-      throw new Error(`Unexpected HTTP status code ${response.status}`);
+    throw error;
   }
 }

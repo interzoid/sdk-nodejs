@@ -1,7 +1,7 @@
 import axios, { AxiosHeaders, AxiosResponse } from 'axios';
 import { getCompanyNameMatchKey } from '../../src/api/CompanyNameMatchKey';
-import { CompanyNameMatchKeyRequest } from '../../src/models/CompanyNameMatchKeyRequest';
-import { MatchKeyResponse } from '../../src/models/MatchKeyResponse';
+import { CompanyNameMatchKeyRequest } from '../../src/interfaces/CompanyNameMatchKeyRequest';
+import { MatchKeyResponse } from '../../src/interfaces/MatchKeyResponse';
 
 jest.mock('axios');
 
