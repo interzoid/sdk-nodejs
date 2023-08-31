@@ -13,3 +13,5 @@ dist/
 *.swp
 coverage/
 .nyc_output/
+
+**.DS_Store

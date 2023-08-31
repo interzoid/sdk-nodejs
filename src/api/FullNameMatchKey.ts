@@ -17,12 +17,8 @@ export async function getFullNameMatchKey(
 ): Promise<MatchKeyResponse> {
   const resource = 'getfullnamematch';
 
-  try {
-    const resp = await InterzoidApi.doGetRequest(resource, request.apiKey, {
-      fullname: request.fullName,
-    });
-    return resp as MatchKeyResponse;
-  } catch (error) {
-    throw error;
-  }
+  const resp = await InterzoidApi.doGetRequest(resource, request.apiKey, {
+    fullname: request.fullName,
+  });
+  return resp as MatchKeyResponse;
 }

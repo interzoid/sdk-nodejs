@@ -1,7 +1,9 @@
 import axios, { AxiosHeaders, AxiosResponse } from 'axios';
-import { getCompanyNameMatchKey } from '../../src/api/CompanyNameMatchKey';
-import { CompanyNameMatchKeyRequest } from '../../src/interfaces/CompanyNameMatchKeyRequest';
-import { MatchKeyResponse } from '../../src/interfaces/MatchKeyResponse';
+import {
+  CompanyNameMatchKeyRequest,
+  getCompanyNameMatchKey,
+  MatchKeyResponse,
+} from '../../src';
 
 jest.mock('axios');
 
@@ -11,7 +13,7 @@ describe('getCompanyNameMatchKey', () => {
   it('returns a simKey when the request is valid', async () => {
     // Arrange
     const request: CompanyNameMatchKeyRequest = {
-      companyName: 'Apple, Inc',
+      company: 'Apple, Inc',
       apiKey: 'test-api-key',
     };
     const mockResponse: AxiosResponse<MatchKeyResponse> = {
@@ -35,7 +37,7 @@ describe('getCompanyNameMatchKey', () => {
   it('throws an error when the status is 403', async () => {
     // Arrange
     const request: CompanyNameMatchKeyRequest = {
-      companyName: 'Apple, Inc',
+      company: 'Apple, Inc',
       apiKey: 'test-api-key',
     };
     const mockResponse: AxiosResponse = {
