@@ -17,7 +17,7 @@
 
 ## API Key
 
-Please visit https://www.interzoid.com/register-api-account to register for an API key. 
+Please visit https://www.interzoid.com/register-api-account to register for an API key and receive free trial credits. 
 
 ---
 
