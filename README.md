@@ -1,4 +1,6 @@
-# interzoid-sdk-typescript
+# Interzoid Node.js SDK
+
+This is a Node.js SDK for Interzoid's Generative-AI powered data matching, data quality, data cleansing, and data normalization for organization and individual name data. Functions include the generation of similarity keys for identifying and matching inconsistent name data, as well as comparing and scoring data for matching purposes.
 
 #### Table of Contents
 1. [API Key](#api-key)
@@ -17,7 +19,7 @@
 
 ## API Key
 
-Please visit https://www.interzoid.com/register-api-account to register for an API key and receive free trial credits. 
+Please visit https://www.interzoid.com/register-api-account to register for an API key and receive free usage credits. 
 
 ---
 
