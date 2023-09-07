@@ -15,10 +15,23 @@ import { InterzoidApi } from './InterzoidApi';
 export async function getFullNameMatchKey(
   request: FullNameMatchKeyRequest,
 ): Promise<MatchKeyResponse> {
+  // Validate request
+  if (!isValidFullNameMatchKeyRequest(request)) {
+    throw new Error('Invalid request. "apiKey" and "fullName" are required.');
+  }
+
   const resource = 'getfullnamematch';
 
   const resp = await InterzoidApi.doGetRequest(resource, request.apiKey, {
     fullname: request.fullName,
   });
   return resp as MatchKeyResponse;
+}
+
+function isValidFullNameMatchKeyRequest(
+  obj: any,
+): obj is FullNameMatchKeyRequest {
+  return (
+    obj && typeof obj.fullName === 'string' && typeof obj.apiKey === 'string'
+  );
 }

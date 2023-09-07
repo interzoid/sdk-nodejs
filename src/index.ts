@@ -1,8 +1,8 @@
 import { getAddressMatchKey } from './api/AddressMatchKey';
 import { getCompanyNameMatchKey } from './api/CompanyNameMatchKey';
 import { getFullNameMatchKey } from './api/FullNameMatchKey';
-import { getRemainingCredits } from './api/RemainingCredits';
-import { getNameMatchScore } from './api/NameMatchScore';
+import { getAccountInfo } from './api/AccountInfo';
+import { getFullNameMatchScore } from './api/FullNameMatchScore';
 import { getOrganizationMatchScore } from './api/OrganizationMatchScore';
 import { AddressMatchKeyRequest } from './interfaces/AddressMatchKeyRequest';
 import { CompanyNameMatchKeyRequest } from './interfaces/CompanyNameMatchKeyRequest';
@@ -15,8 +15,8 @@ export {
   getAddressMatchKey,
   getCompanyNameMatchKey,
   getFullNameMatchKey,
-  getRemainingCredits,
-  getNameMatchScore,
+  getAccountInfo,
+  getFullNameMatchScore,
   getOrganizationMatchScore,
   AddressMatchKeyRequest,
   CompanyNameMatchKeyRequest,

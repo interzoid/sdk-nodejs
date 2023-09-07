@@ -1,9 +1,6 @@
 import axios, { AxiosHeaders, AxiosResponse } from 'axios';
-import {
-  MatchScoreRequest,
-  MatchScoreResponse,
-} from '../../src'
-import { getNameMatchScore } from '../../src/api/NameMatchScore'
+import { MatchScoreRequest, MatchScoreResponse } from '../../src';
+import { getFullNameMatchScore } from '../../src/api/FullNameMatchScore';
 
 jest.mock('axios');
 
@@ -28,9 +25,20 @@ describe('getNameMatchScore', () => {
     mockedAxios.get.mockResolvedValueOnce(mockResponse);
 
     // Act
-    const result = await getNameMatchScore(request);
+    const result = await getFullNameMatchScore(request);
 
     // Assert
     expect(result.score).toEqual('89');
+  });
+
+  it('throws an error when the request is invalid', () => {
+    const req: any = {
+      value1: 'John Smith',
+      // missing value2
+      apiKey: '12345',
+    };
+    expect(() => getFullNameMatchScore(req)).rejects.toThrow(
+      'Invalid request. "apiKey", "value1" and "value2" are required.',
+    );
   });
 });

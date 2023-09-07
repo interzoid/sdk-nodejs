@@ -34,6 +34,25 @@ describe('getCompanyNameMatchKey', () => {
     expect(result.simKey).toEqual('12345');
   });
 
+  it('throws an error when the request is invalid', async () => {
+    const req1: any = {
+      address: '1234 Main Street, Anytown USA',
+      // missing apiKey
+    };
+    const req2: any = {
+      apiKey: '12345',
+      // missing address
+    };
+
+    await expect(getAddressMatchKey(req1)).rejects.toThrow(
+      'Invalid request. "apiKey" and "address" are required.',
+    );
+
+    await expect(getAddressMatchKey(req2)).rejects.toThrow(
+      'Invalid request. "apiKey" and "address" are required.',
+    );
+  });
+
   it('throws an error when the status is 403', async () => {
     // Arrange
     const request: AddressMatchKeyRequest = {

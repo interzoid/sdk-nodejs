@@ -34,6 +34,24 @@ describe('getFullNameMatchKey', () => {
     expect(result.simKey).toEqual('12345');
   });
 
+  it('throws an error when the request is invalid', () => {
+    const req1: any = {
+      fullName: 'John Doe',
+      // missing apiKey
+    };
+    const req2: any = {
+      apiKey: '12345',
+      // missing fullName
+    };
+
+    expect(() => getFullNameMatchKey(req1)).rejects.toThrow(
+      'Invalid request. "apiKey" and "fullName" are required.',
+    );
+    expect(() => getFullNameMatchKey(req2)).rejects.toThrow(
+      'Invalid request. "apiKey" and "fullName" are required.',
+    );
+  });
+
   it('throws an error when the status is 403', async () => {
     // Arrange
     const request: FullNameMatchKeyRequest = {

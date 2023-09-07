@@ -3,31 +3,29 @@ import { MatchScoreResponse } from '../interfaces/MatchScoreResponse';
 import { InterzoidApi } from './InterzoidApi';
 
 /**
- * This API provides a match score (likelihood of matching) from 0-100 between two organization names.
+ * This API provides a match score (likelihood of matching) between two individual names on a scale of 0-100, where 100 is the highest possible match.
  * @param {MatchScoreRequest} request
  * @returns {Promise<MatchScoreResponse>}
  */
-export async function getOrganizationMatchScore(
+export async function getFullNameMatchScore(
   request: MatchScoreRequest,
 ): Promise<MatchScoreResponse> {
   // Validate request
-  if (!isValidOrganizationMatchScoreRequest(request)) {
+  if (!isValidFullNameMatchScoreRequest(request)) {
     throw new Error(
       'Invalid request. "apiKey", "value1" and "value2" are required.',
     );
   }
-  const resource = 'getorgmatchscore';
+  const resource = 'getfullnamematchscore';
 
   const resp = await InterzoidApi.doGetRequest(resource, request.apiKey, {
-    org1: request.value1,
-    org2: request.value2,
+    fullname1: request.value1,
+    fullname2: request.value2,
   });
   return resp as MatchScoreResponse;
 }
 
-function isValidOrganizationMatchScoreRequest(
-  obj: any,
-): obj is MatchScoreRequest {
+function isValidFullNameMatchScoreRequest(obj: any): obj is MatchScoreRequest {
   return (
     obj &&
     typeof obj.value1 === 'string' &&
