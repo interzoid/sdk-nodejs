@@ -1,11 +1,12 @@
 {
   "name": "interzoid-sdk-typescript",
   "version": "1.0.0",
-  "author": "Interzoid",
+  "author": "Interzoid LLC <support@interzoid.com> https://interzoid.com",
+  "description": "Interzoid SDK for TypeScript",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "rm -rf ./dist && tsc",
+    "build": "tsc",
     "test": "jest",
     "lint": "eslint 'src/**/*.ts'",
     "lint:fix": "eslint 'src/**/*.ts' --fix"
