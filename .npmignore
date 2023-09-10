@@ -1,6 +1,9 @@
 # .npmignore
 src/
 tests/
+.idea
 *.log
 .prettierrc
 jest.config.js
+.eslintrc.js
+tsconfig.json
