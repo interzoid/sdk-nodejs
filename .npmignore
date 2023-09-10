@@ -2,3 +2,5 @@
 src/
 tests/
 *.log
+.prettierrc
+jest.config.js
