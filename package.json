@@ -1,6 +1,6 @@
 {
   "name": "@interzoid/interzoid",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Interzoid, Inc. <support@interzoid.com> https://interzoid.com",
   "description": "Interzoid SDK for Typescript, Generative-AI powered data matching, data quality, and data normalization for organization and individual name data",
   "keywords": ["Generative AI", "Data Quality", "Data Matching", "Data Cleansing", "Data Normalization"],

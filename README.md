@@ -27,7 +27,7 @@ Please visit https://www.interzoid.com/register-api-account to register for an A
 The Interzoid SDK requires [Node.js](https://nodejs.org/) v14 or greater.
 
 ```shell
-npm install interzoid
+npm install @interzoid/interzoid
 ```
 
 ---
