@@ -1,4 +1,4 @@
-# Interzoid Node.js SDK
+# Interzoid Data Matching Node.js SDK
 
 This is a Node.js SDK for Interzoid's Generative-AI powered data matching, data quality, data cleansing, and data normalization for organization and individual name data. Functions include the generation of similarity keys for identifying and matching inconsistent name data, as well as comparing and scoring data for matching purposes.
 
@@ -27,7 +27,7 @@ Please visit https://www.interzoid.com/register-api-account to register for an A
 The Interzoid SDK requires [Node.js](https://nodejs.org/) v14 or greater.
 
 ```shell
-npm install @interzoid/interzoid
+npm install @interzoid/data-matching
 ```
 
 ---
