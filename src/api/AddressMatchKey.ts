@@ -9,8 +9,8 @@ import { InterzoidApi } from './InterzoidApi';
  * This avoids the problems of data inconsistency, misspellings, and address element
  * variations when matching either withing a single dataset, or across datasets.
  * It also provides for broader searching capabilities.
- * @param {AddressMatchKeyRequest} request
- * @returns {Promise<MatchKeyResponse>}
+ * @param {AddressMatchKeyRequest} request - Request object
+ * @returns {Promise<MatchKeyResponse>} - Response object
  */
 export async function getAddressMatchKey(
   request: AddressMatchKeyRequest,
@@ -30,6 +30,11 @@ export async function getAddressMatchKey(
   return resp as MatchKeyResponse;
 }
 
+/**
+ * Validate AddressMatchKeyRequest
+ * @param obj
+ * @returns {obj is AddressMatchKeyRequest}
+ */
 function isValidAddressMatchKeyRequest(
   obj: any,
 ): obj is AddressMatchKeyRequest {

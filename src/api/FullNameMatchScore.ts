@@ -4,8 +4,8 @@ import { InterzoidApi } from './InterzoidApi';
 
 /**
  * This API provides a match score (likelihood of matching) between two individual names on a scale of 0-100, where 100 is the highest possible match.
- * @param {MatchScoreRequest} request
- * @returns {Promise<MatchScoreResponse>}
+ * @param {MatchScoreRequest} request   - Request object
+ * @returns {Promise<MatchScoreResponse>} - Response object
  */
 export async function getFullNameMatchScore(
   request: MatchScoreRequest,
@@ -25,6 +25,11 @@ export async function getFullNameMatchScore(
   return resp as MatchScoreResponse;
 }
 
+/**
+ * Validate MatchScoreRequest
+ * @param obj
+ * @returns {obj is MatchScoreRequest}
+ */
 function isValidFullNameMatchScoreRequest(obj: any): obj is MatchScoreRequest {
   return (
     obj &&

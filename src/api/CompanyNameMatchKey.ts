@@ -10,8 +10,8 @@ import { InterzoidApi } from './InterzoidApi';
  * problems of data inconsistency, misspellings, and name variations when matching
  * within a single dataset or across multiple data sources.
  * https://www.interzoid.com/apis/company-name-matching
- * @param {FullNameMatchKeyRequest} request
- * @returns {Promise<MatchKeyResponse>}
+ * @param {FullNameMatchKeyRequest} request - Request object
+ * @returns {Promise<MatchKeyResponse>} - Response object
  */
 export async function getCompanyNameMatchKey(
   request: CompanyNameMatchKeyRequest,
@@ -31,6 +31,11 @@ export async function getCompanyNameMatchKey(
   return resp as MatchKeyResponse;
 }
 
+/**
+ * Validate CompanyNameMatchKeyRequest
+ * @param obj
+ * @returns {obj is FullNameMatchKeyRequest}
+ */
 function isValidCompanyNameMatchKeyRequest(
   obj: any,
 ): obj is CompanyNameMatchKeyRequest {

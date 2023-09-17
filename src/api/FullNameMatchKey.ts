@@ -9,8 +9,8 @@ import { InterzoidApi } from './InterzoidApi';
  * similarity. This avoids the problems of data inconsistency, misspellings, and
  * name variations when matching within a single dataset, and can also help
  * matching across datasets or for more advanced searching.
- * @param {FullNameMatchKeyRequest} request
- * @returns {Promise<MatchKeyResponse>}
+ * @param {FullNameMatchKeyRequest} request - Request object
+ * @returns {Promise<MatchKeyResponse>} - Response object
  */
 export async function getFullNameMatchKey(
   request: FullNameMatchKeyRequest,
@@ -28,6 +28,11 @@ export async function getFullNameMatchKey(
   return resp as MatchKeyResponse;
 }
 
+/**
+ * Validate FullNameMatchKeyRequest
+ * @param obj
+ * @returns {obj is FullNameMatchKeyRequest}
+ */
 function isValidFullNameMatchKeyRequest(
   obj: any,
 ): obj is FullNameMatchKeyRequest {

@@ -4,8 +4,8 @@ import { InterzoidApi } from './InterzoidApi';
 
 /**
  * This API provides a match score (likelihood of matching) from 0-100 between two organization names.
- * @param {MatchScoreRequest} request
- * @returns {Promise<MatchScoreResponse>}
+ * @param {MatchScoreRequest} request - Request object
+ * @returns {Promise<MatchScoreResponse>} - Response object
  */
 export async function getOrganizationMatchScore(
   request: MatchScoreRequest,
@@ -25,6 +25,10 @@ export async function getOrganizationMatchScore(
   return resp as MatchScoreResponse;
 }
 
+/**
+ * Validate MatchScoreRequest
+ * @param obj
+ */
 function isValidOrganizationMatchScoreRequest(
   obj: any,
 ): obj is MatchScoreRequest {

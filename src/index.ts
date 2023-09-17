@@ -10,6 +10,8 @@ import { FullNameMatchKeyRequest } from './interfaces/FullNameMatchKeyRequest';
 import { MatchKeyResponse } from './interfaces/MatchKeyResponse';
 import { MatchScoreRequest } from './interfaces/MatchScoreRequest';
 import { MatchScoreResponse } from './interfaces/MatchScoreResponse';
+import { InterzoidRequest } from './interfaces/InterzoidRequest';
+import { InterzoidResponse } from './interfaces/InterzoidResponse';
 
 export {
   getAddressMatchKey,
@@ -24,4 +26,6 @@ export {
   MatchKeyResponse,
   MatchScoreRequest,
   MatchScoreResponse,
+  InterzoidRequest,
+  InterzoidResponse,
 };

@@ -3,14 +3,21 @@
   "version": "1.0.0",
   "author": "Interzoid, Inc. <support@interzoid.com> https://interzoid.com",
   "description": "Interzoid SDK for Typescript, Generative-AI powered data matching, data quality, and data normalization for organization and individual name data",
-  "keywords": ["Generative AI", "Data Quality", "Data Matching", "Data Cleansing", "Data Normalization"],
+  "keywords": [
+    "Generative AI",
+    "Data Quality",
+    "Data Matching",
+    "Data Cleansing",
+    "Data Normalization"
+  ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "test": "jest",
     "lint": "eslint 'src/**/*.ts'",
-    "lint:fix": "eslint 'src/**/*.ts' --fix"
+    "lint:fix": "eslint 'src/**/*.ts' --fix",
+    "jsdoc": "npx typedoc src/index.ts"
   },
   "dependencies": {
     "axios": "^1.5.0",
@@ -25,6 +32,7 @@
     "jest": "^29.6.4",
     "prettier": "^3.0.2",
     "ts-jest": "^29.1.1",
+    "typedoc": "^0.25.1",
     "typescript": "^5.2.2"
   }
 }

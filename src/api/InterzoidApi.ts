@@ -1,6 +1,9 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import qs from 'qs';
 
+/**
+ * Interzoid API client
+ */
 export class InterzoidApi {
   private static readonly baseUrl = 'https://api.interzoid.com/';
 
