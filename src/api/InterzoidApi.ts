@@ -17,6 +17,7 @@ export class InterzoidApi {
     const config: AxiosRequestConfig = {
       headers: {
         'x-api-key': apiKey,
+        'User-Agent': 'axios/data-match-npm/1.0.0',
       },
       params: params,
       paramsSerializer: (params: object) => {
