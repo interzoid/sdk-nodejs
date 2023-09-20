@@ -1,6 +1,6 @@
 {
   "name": "@interzoid/data-matching",
-  "version": "1.0.0",
+  "version": "1.1.0-alpha.1",
   "author": "Interzoid, Inc. <support@interzoid.com> https://interzoid.com",
   "description": "Interzoid SDK for Typescript, Generative-AI powered data matching, data quality, and data normalization for organization and individual name data",
   "keywords": [
@@ -13,7 +13,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "rm -rf dist && tsc",
     "test": "jest",
     "lint": "eslint 'src/**/*.ts'",
     "lint:fix": "eslint 'src/**/*.ts' --fix",
