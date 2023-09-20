@@ -22,7 +22,7 @@ export async function getFullNameMatchKey(
 
   const resource = 'getfullnamematch';
 
-  const resp = await InterzoidApi.doGetRequest(resource, request.apiKey, {
+  const resp = await InterzoidApi.doApiGetRequest(resource, request.apiKey, {
     fullname: request.fullName,
   });
   return resp as MatchKeyResponse;

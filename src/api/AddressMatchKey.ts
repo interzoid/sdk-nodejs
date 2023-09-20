@@ -23,7 +23,7 @@ export async function getAddressMatchKey(
   const algorithm = request.algorithm || 'narrow';
   const resource = 'getaddressmatchadvanced';
 
-  const resp = await InterzoidApi.doGetRequest(resource, request.apiKey, {
+  const resp = await InterzoidApi.doApiGetRequest(resource, request.apiKey, {
     address: request.address,
     algorithm: algorithm,
   });

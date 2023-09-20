@@ -10,5 +10,5 @@ import { InterzoidRequest } from '../interfaces/InterzoidRequest';
 export async function getAccountInfo(
   request: InterzoidRequest,
 ): Promise<InterzoidResponse> {
-  return InterzoidApi.doGetRequest('getremainingcredits', request.apiKey);
+  return InterzoidApi.doApiGetRequest('getremainingcredits', request.apiKey);
 }
