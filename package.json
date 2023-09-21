@@ -1,6 +1,6 @@
 {
   "name": "@interzoid/data-matching",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Interzoid, Inc. <support@interzoid.com> https://interzoid.com",
   "description": "Interzoid SDK for Typescript, Generative-AI powered data matching, data quality, and data normalization for organization and individual name data",
   "keywords": [
@@ -10,6 +10,12 @@
     "Data Cleansing",
     "Data Normalization"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/interzoid/sdk-nodejs"
+  },
+  "homepage": "https://github.com/interzoid/sdk-nodejs#readme",
+  "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
