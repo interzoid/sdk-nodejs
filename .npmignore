@@ -1,7 +1,9 @@
 # .npmignore
 src/
 tests/
+docs/
 .idea
+.github
 *.log
 .prettierrc
 jest.config.js
