@@ -1,5 +1,5 @@
 /**
- * MatchClusterItem represents a single match cluster item.
+ * Represents an individual item in a match cluster.
  * @interface MatchClusterItem
  * @property {string} Data - The data
  * @property {string} Reference - The reference
@@ -12,7 +12,7 @@ interface MatchClusterItem {
 }
 
 /**
- * MatchCluster represents a match cluster.
+ * Represents a group of related match cluster items.
  * @type MatchCluster - An array of {MatchClusterItem}
  */
 type MatchCluster = MatchClusterItem[];
