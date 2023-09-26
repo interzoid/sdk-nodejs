@@ -1,18 +1,18 @@
-import { CsvMatchKeyReportRequest } from '../interfaces/CsvMatchKeyReportRequest';
+import { DelimitedFileMatchKeyReportRequest } from '../interfaces/DelimitedFileMatchKeyReportRequest';
 import { InterzoidApi } from './InterzoidApi';
-import { CsvMatchKeyReportResponse } from '../interfaces/CsvMatchKeyReportResponse';
+import { DelimitedFileMatchKeyReportResponse } from '../interfaces/DelimitedFileMatchKeyReportResponse';
 import { Source } from '../interfaces/Source';
 import { Process } from '../interfaces/Process';
 import { Category } from '../interfaces/Category';
 
 /**
- * getCsvMatchKeyReport returns a report of all found clusters of similar data.
- * @param {CsvMatchKeyReportRequest} request
- * @returns {Promise<CsvMatchKeyReportResponse>} response
+ * getDelimitedFileMatchKeyReport reads a CSV or TSV file from a URL and returns a report of matching keys.
+ * @param {DelimitedFileMatchKeyReportRequest} request
+ * @returns {Promise<DelimitedFileMatchKeyReportResponse>} response
  */
-export async function getCsvMatchKeyReport(
-  request: CsvMatchKeyReportRequest,
-): Promise<CsvMatchKeyReportResponse> {
+export async function getDelimitedFileMatchKeyReport(
+  request: DelimitedFileMatchKeyReportRequest,
+): Promise<DelimitedFileMatchKeyReportResponse> {
   const validationResult = isValidCsvMatchKeyReportRequest(request);
   if (!validationResult.isValid) {
     throw new Error(validationResult.errors.join(' '));
@@ -27,14 +27,13 @@ export async function getCsvMatchKeyReport(
     category: request.category,
     column: request.matchColumn,
     reference: request.referenceColumn,
-    apikey: request.apiKey,
     json: request.responseFormat === 'json',
     html: request.responseFormat === 'html',
+    apikey: request.apiKey,
   };
 
   const response = await InterzoidApi.doCloudConnectRequest(params);
-
-  return response as CsvMatchKeyReportResponse;
+  return response as DelimitedFileMatchKeyReportResponse;
 }
 
 function isValidCsvMatchKeyReportRequest(obj: any): {

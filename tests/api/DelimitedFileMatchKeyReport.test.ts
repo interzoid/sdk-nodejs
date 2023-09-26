@@ -1,6 +1,9 @@
 import axios, { AxiosHeaders } from 'axios';
 
-import { CsvMatchKeyReportRequest, getCsvMatchKeyReport } from '../../src';
+import {
+  DelimitedFileMatchKeyReportRequest,
+  getDelimitedFileMatchKeyReport,
+} from '../../src';
 import { Category } from '../../src/interfaces/Category';
 import { Source } from '../../src/interfaces/Source';
 
@@ -10,7 +13,7 @@ describe('getCsvMatchKeyReport', () => {
   const mockedAxios = axios as jest.Mocked<typeof axios>;
 
   it('returns a response when the request is valid', async () => {
-    const request: CsvMatchKeyReportRequest = {
+    const request: DelimitedFileMatchKeyReportRequest = {
       category: Category.COMPANY,
       source: Source.CSV,
       csvUrl: 'https://dl.interzoid.com/csv/companies.csv',
@@ -28,12 +31,12 @@ describe('getCsvMatchKeyReport', () => {
       },
     };
     mockedAxios.get.mockResolvedValueOnce(mockResponse);
-    const result = await getCsvMatchKeyReport(request);
+    const result = await getDelimitedFileMatchKeyReport(request);
     expect(result.Status).toEqual('success');
   });
 
   it('throws an error when the request is invalid', async () => {
-    const request: CsvMatchKeyReportRequest = {
+    const request: DelimitedFileMatchKeyReportRequest = {
       category: Category.COMPANY,
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
@@ -43,23 +46,13 @@ describe('getCsvMatchKeyReport', () => {
       apiKey: 'test-api-key',
       responseFormat: 'json',
     };
-    const mockResponse = {
-      data: { Status: 'error', Message: 'Invalid request.', MatchClusters: [] },
-      status: 400,
-      statusText: 'Bad Request',
-      headers: {},
-      config: {
-        headers: new AxiosHeaders(),
-      },
-    };
-    mockedAxios.get.mockResolvedValueOnce(mockResponse);
-    await expect(getCsvMatchKeyReport(request)).rejects.toThrow(
+    await expect(getDelimitedFileMatchKeyReport(request)).rejects.toThrow(
       `Invalid 'source'. It must be either 'CSV' or 'TSV'.`,
     );
   });
 
   it('throws an error when the request is invalid', async () => {
-    const request: CsvMatchKeyReportRequest = {
+    const request: DelimitedFileMatchKeyReportRequest = {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       category: 'Person',
@@ -69,17 +62,7 @@ describe('getCsvMatchKeyReport', () => {
       apiKey: 'test-api-key',
       responseFormat: 'json',
     };
-    const mockResponse = {
-      data: { Status: 'error', Message: 'Invalid request.', MatchClusters: [] },
-      status: 400,
-      statusText: 'Bad Request',
-      headers: {},
-      config: {
-        headers: new AxiosHeaders(),
-      },
-    };
-    mockedAxios.get.mockResolvedValueOnce(mockResponse);
-    await expect(getCsvMatchKeyReport(request)).rejects.toThrow(
+    await expect(getDelimitedFileMatchKeyReport(request)).rejects.toThrow(
       `Invalid 'category'. It must be one of the following: address, company, individual`,
     );
   });

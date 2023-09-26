@@ -41,5 +41,4 @@ export enum Source {
   COCKROACHDB = 'CockroachDB',
   CSV = 'CSV',
   TSV = 'TSV',
-  EXCEL_FILE = 'Excel File',
 }
