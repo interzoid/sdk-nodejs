@@ -1,6 +1,9 @@
 import axios, { AxiosHeaders, AxiosResponse } from 'axios';
-import { MatchScoreRequest, MatchScoreResponse } from '../../src';
-import { getFullNameMatchScore } from '../../src/api/FullNameMatchScore';
+import {
+  getFullNameMatchScore,
+  MatchScoreRequest,
+  MatchScoreResponse,
+} from '../../src';
 
 jest.mock('axios');
 

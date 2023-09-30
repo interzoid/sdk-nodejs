@@ -1,9 +1,9 @@
 import axios, { AxiosHeaders, AxiosResponse } from 'axios';
 import {
+  getOrganizationMatchScore,
   MatchScoreRequest,
   MatchScoreResponse,
-} from '../../src'
-import { getOrganizationMatchScore } from '../../src/api/OrganizationMatchScore'
+} from '../../src';
 
 jest.mock('axios');
 

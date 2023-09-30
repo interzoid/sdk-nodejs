@@ -1,9 +1,11 @@
 import axios, { AxiosHeaders } from 'axios';
-import { CloudWorkloadRequest } from '../../src/interfaces/CloudWorkloadRequest';
-import { Process } from '../../src/interfaces/Process';
-import { Category } from '../../src/interfaces/Category';
-import { Source } from '../../src/interfaces/Source';
-import { getCloudDatabaseMatchKeyReport } from '../../src/api/CloudDatabaseMatchKeyReport';
+import {
+  Category,
+  CloudWorkloadRequest,
+  getCloudDatabaseMatchKeyReport,
+  Process,
+  Source,
+} from '../../src';
 
 jest.mock('axios');
 
