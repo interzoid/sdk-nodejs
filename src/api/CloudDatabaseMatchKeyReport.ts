@@ -24,6 +24,7 @@ export async function getCloudDatabaseMatchKeyReport(
     reference: request.reference,
     json: request.json,
     html: request.html,
+    newtable: request.newTable,
     apikey: request.apiKey,
   };
 

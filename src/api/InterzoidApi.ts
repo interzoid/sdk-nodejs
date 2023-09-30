@@ -53,7 +53,9 @@ export class InterzoidApi {
     let response: AxiosResponse;
     try {
       response = await axios.get(requestUri, config);
+      // console.log(response.status);
     } catch (error) {
+      ``;
       throw new Error(`Network or server error: ${error}`);
     }
 

@@ -14,7 +14,7 @@ This is a Node.js SDK for Interzoid's Generative-AI powered data matching, data 
       1. [Full Name Match Score](#full-name-match-score)
       2. [Organization Name Match Score](#organization-name-match-score)
    3. [Interzoid Account Information (Remaining Credits)](#account-information)
-
+4. [Interzoid Cloud Connect](#interzoid-cloud-connect)
 --- 
 
 ## API Key
@@ -43,7 +43,7 @@ To learn more about the technology behind these APIs, please visit https://docs.
 This API provides a hashed similarity key from the input data used to match with other similar full name data. Use the generated similarity key, rather than the actual data itself, to match and/or sort individual name data by similarity. This avoids the problems of data inconsistency, misspellings, and name variations when matching within a single dataset, and can also help matching across datasets or for more advanced searching.
 
 ```typescript
-import { getFullNameMatchKey } from 'interzoid';
+import { getFullNameMatchKey } from '@intezoid/data-matching';
 
 async function fullNameMatch() {
     const result = await getFullNameMatchKey({apiKey: 'your-interzoid-api-key', fullName: 'John Smith'});
@@ -75,7 +75,7 @@ The optional `algorithm` parameter provides multiple matching algorithms:
 - The default value for the optional `algorithm` parameter is `wide`. 
 
 ```typescript
-import { getCompanyNameMatchKey } from 'interzoid';
+import { getCompanyNameMatchKey } from '@intezoid/data-matching';
 
 async function companyNameMatch() {
     const result = await getCompanyNameMatchKey({apiKey: 'your-interzoid-api-key', company: 'Microsoft', algorithm: 'medium'});
@@ -102,7 +102,7 @@ You can choose from two matching algorithms, `wide` and `narrow`.
 - The default value for the optional `algorithm` parameter is `narrow`. 
 
 ```typescript
-import { getAddressMatchKey } from 'interzoid';
+import { getAddressMatchKey } from '@intezoid/data-matching';
 
 async function addressMatch() {
   const result = await getAddressMatchKey({apiKey: 'your-interzoid-api-key', address: '500 main street', algorithm: 'narrow'});
@@ -130,7 +130,7 @@ We provide 2 operations for match scoring: Organization name and Full name. The 
 This API provides a match score (likelihood of matching) between two individual names on a scale of 0-100, where 100 is the highest possible match.
     
 ```typescript
-import { getFullNameMatchScore } from 'interzoid';
+import { getFullNameMatchScore } from '@intezoid/data-matching';
 
 async function fullNameMatchScore() {
   const result = await getFullNameMatchScore({apiKey: 'your-interzoid-api-key', value1: 'John Smith', value2: 'John Smyth'});
@@ -153,7 +153,7 @@ async function fullNameMatchScore() {
 This API provides a match score (likelihood of matching) from 0-100 between two organization names.
 
 ```typescript
-import { getOrganizationMatchScore } from 'interzoid';
+import { getOrganizationMatchScore } from '@intezoid/data-matching';
 
 async function organizationNameMatchScore() {
   const result = await getOrganizationNameMatchScore({apiKey: 'your-interzoid-api-key', value1: 'Apple', value2: 'Apple Inc.'});
@@ -179,7 +179,7 @@ This API retrieves the current amount of remaining purchased (or trial) credits 
 Using this function does **not** deduct credits from your account.
 
 ```typescript
-import { getRemainingCredits } from 'interzoid';
+import { getRemainingCredits } from '@intezoid/data-matching';
 
 async function remainingCredits() {
   const result = getRemainingCredits({apiKey: 'your-interzoid-api-key'});
@@ -195,3 +195,104 @@ async function remainingCredits() {
 }
 ```
 
+## Interzoid Cloud Connect
+
+
+### Cloud Database Match Key Report
+
+
+#### Return a JSON report of similarity keys for a database table column
+
+```typescript
+import { getCloudDatabaseMatchKeyReport, Category, Source, Process } from '@intezoid/data-matching';
+
+async function databaseMatchKeyReport() {
+   const result = await getCloudDatabaseMatchKeyReport({
+      apiKey: 'your-interzoid-api-key',
+      category: Category.COMPANY,
+      source: Source.MYSQL,
+      connection: 'db_user:db_password@tcp(db_host)/database',
+      table: 'companies',
+      column: 'companyname',
+      reference: 'id',
+      process: Process.MATCH_REPORT,
+      json: true,
+   });
+   console.log(JSON.stringify(result, null, 2));
+}
+```
+
+##### Sample Response
+
+```json
+{
+  "Status": "success",
+  "Message": "",
+  "MatchClusters": [
+    [
+      {
+        "Data": "Cisco",
+        "Reference": "",
+        "SimKey": "3AmCGk2yvEJ7XUxUmB3dFHxRiVzy4Squ89J-4_lDrxQ"
+      },
+      {
+        "Data": "Cisco Systems",
+        "Reference": "30",
+        "SimKey": "3AmCGk2yvEJ7XUxUmB3dFHxRiVzy4Squ89J-4_lDrxQ"
+      }
+    ],
+    [
+      {
+        "Data": "Twitter",
+        "Reference": "30",
+        "SimKey": "40hBt2WEN9a0Vc6OBbvKx9p-ANzGqzFRk8bKAnpppns"
+      },
+      {
+        "Data": "\"Twitter, Inc.\"",
+        "Reference": "16",
+        "SimKey": "40hBt2WEN9a0Vc6OBbvKx9p-ANzGqzFRk8bKAnpppns"
+      },
+      {
+        "Data": "Twitter",
+        "Reference": "15",
+        "SimKey": "40hBt2WEN9a0Vc6OBbvKx9p-ANzGqzFRk8bKAnpppns"
+      }
+    ],
+    [
+      {
+        "Data": "Netflix",
+        "Reference": "15",
+        "SimKey": "8c6BY0KP9MYiDezQaKL3bH3iHfDU2wCMMTD9v0EeZJ8"
+      },
+      {
+        "Data": "\"Netflix, Inc.\"",
+        "Reference": "34",
+        "SimKey": "8c6BY0KP9MYiDezQaKL3bH3iHfDU2wCMMTD9v0EeZJ8"
+      }
+    ],
+    [
+      {
+        "Data": "Sony",
+        "Reference": "34",
+        "SimKey": "9qe8E7w3HgyaNxI4uy9A7Gq1DxpTlNVNJw7G0goGi98"
+      },
+      {
+        "Data": "Sony",
+        "Reference": "31",
+        "SimKey": "9qe8E7w3HgyaNxI4uy9A7Gq1DxpTlNVNJw7G0goGi98"
+      },
+      {
+        "Data": "Sony Corporation",
+        "Reference": "32",
+        "SimKey": "9qe8E7w3HgyaNxI4uy9A7Gq1DxpTlNVNJw7G0goGi98"
+      }
+    ]
+ }
+```
+
+
+### Delimited File Match Key Report
+
+```typescript
+
+```
