@@ -5,7 +5,7 @@
  * @property {string} KEYS_ONLY - outputs a generated similarity key for every record in the dataset.
  * @property {string} GEN_SQL - similar to KEYS_ONLY, however it generates the SQL INSERT statements to store the
  * similarity keys in a database.
- * @property {string} CREATE_TABLE -  will actually create a new table in the source database with all the similarity keys
+ * @property {string} CREATE_TABLE -  will create a new table in the source database with all the similarity keys
  * for each record in the source table, so they can be used for additional queries.
  */
 export enum Process {

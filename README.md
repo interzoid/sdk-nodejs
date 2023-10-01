@@ -189,10 +189,11 @@ Interzoid's Cloud Data Connect is a set of functions that allow you to match dat
 The `process` parameter determines the type of matching process to run. The package provides an `enum` called `Process` that contains the available options.
 
 The options are:
-- `Process.MATCH_REPORT` - returns a match key report for the data in the table
-- `Process.CREATE_TABLE` - creates a new table with the source data and similarity keys
-- `Process.GEN_SQL` - generates SQL statements to insert the source data and similarity keys
-- `Process.KEYS_ONLY` - returns only the similarity keys for the data in the table
+- `Process.MATCH_REPORT` - Generate a report of all found clusters of similar data.
+- `Process.CREATE_TABLE` - Creates a new table in the source database with all the similarity keys
+  for each record in the source table, so they can be used for additional queries.
+- `Process.GEN_SQL` - Generate the SQL INSERT statements to store the similarity keys in a database.
+- `Process.KEYS_ONLY` - Output a generated similarity key for every record in the dataset.
 
 ### Connection Strings
 

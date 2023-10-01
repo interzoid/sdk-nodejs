@@ -5,6 +5,12 @@ import { Category } from '../interfaces/Category';
 import { Process } from '../interfaces/Process';
 import { Source } from '../interfaces/Source';
 
+/**
+ * This API calculates similarity keys for data in a cloud connected database.
+ *
+ * @param {CloudWorkloadRequest} request - Request object
+ * @returns {Promise<CloudWorkloadResponse>} - Response object
+ */
 export async function getCloudDatabaseMatchKeyReport(
   request: CloudWorkloadRequest,
 ) {
