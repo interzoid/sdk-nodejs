@@ -220,11 +220,11 @@ Please see the [source code](src/interfaces/Source.ts) for a complete list of av
 
 The `category` parameter determines the type of data you're matching. The package provides an `enum` called [`Category`](src/interfaces/Category.ts) that contains the available options.
 
-| Category            | Description             |
-|---------------------|-------------------------|
-| `Category.COMPANY`  | Match company names.    |
-| `Category.FULLNAME` | Match individual names. |
-| `Category.ADDRESS`  | Match addresses.        |
+| Category              | Description             |
+|-----------------------|-------------------------|
+| `Category.COMPANY`    | Match company names.    |
+| `Category.INDIVIDUAL` | Match individual names. |
+| `Category.ADDRESS`    | Match addresses.        |
 
 ### Connection Strings
 
