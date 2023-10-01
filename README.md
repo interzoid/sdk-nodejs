@@ -13,8 +13,14 @@ This is a Node.js SDK for Interzoid's Generative-AI powered data matching, data 
    2. [Match Score Functions](#match-score-functions)
       1. [Full Name Match Score](#full-name-match-score)
       2. [Organization Name Match Score](#organization-name-match-score)
-   3. [Interzoid Account Information (Remaining Credits)](#account-information)
-4. [Interzoid Cloud Connect](#interzoid-cloud-connect)
+4. [Interzoid Cloud Data Connect](#cloud-data-connect)
+   1. [Introduction](#introduction)
+   2. [Matching Processes](#matching-processes)
+   3. [Connection Strings](#connection-strings)
+   4. [Match and write results to a new table](#match-and-write-results-to-a-new-table)
+   5. [Match Key Report for a delimited (CSV or TSV) text file](#match-key-report-for-a-delimited-csv-or-tsv-text-file)
+   6. [Delimited File Match Key Report](#delimited-file-match-key-report)
+5. [Interzoid Account Information (Remaining Credits)](#account-information)
 --- 
 
 ## API Key
@@ -172,57 +178,88 @@ async function organizationNameMatchScore() {
 
 ---
 
-#### Account Information
+## Cloud Data Connect
 
-This API retrieves the current amount of remaining purchased (or trial) credits for a license key.
+### Introduction
 
-Using this function does **not** deduct credits from your account.
+Interzoid's Cloud Data Connect is a set of functions that allow you to match data in your cloud database with Interzoid's data matching algorithms.
 
-```typescript
-import { getRemainingCredits } from '@intezoid/data-matching';
+### Matching Processes
 
-async function remainingCredits() {
-  const result = getRemainingCredits({apiKey: 'your-interzoid-api-key'});
-    console.log(result);
-}
-```
+The `process` parameter determines the type of matching process to run. The package provides an `enum` called `Process` that contains the available options.
 
-##### Result
-```json
-{
-  "credits": "9998",
-  "code": "Success"
-}
-```
+The options are:
+- `Process.MATCH_REPORT` - returns a match key report for the data in the table
+- `Process.CREATE_TABLE` - creates a new table with the source data and similarity keys
+- `Process.GEN_SQL` - generates SQL statements to insert the source data and similarity keys
+- `Process.KEYS_ONLY` - returns only the similarity keys for the data in the table
 
-## Interzoid Cloud Connect
+### Connection Strings
 
+The `connection` parameter is a connection string for your database. The format of the connection string depends on the database you're connecting to. Please see [this page](https://connect.interzoid.com/connection-strings) for examples of connection strings for various databases.
 
-### Cloud Database Match Key Report
+### Match and write results to a new table
 
+Set the `process` parameter to `CREATE_TABLE` to create a new table in your database with the match keys. The `newTable` parameter is the name of the new table to create. This table will be created by the process, and will contain the original data and the similarity key. 
 
-#### Return a JSON report of similarity keys for a database table column
+Don't create the table yourself, the process will create it for you. 
+
+You'll have to grant the user you're connecting with the ability to create a new table in the database in addition to the ability to read from the table you're matching.
 
 ```typescript
-import { getCloudDatabaseMatchKeyReport, Category, Source, Process } from '@intezoid/data-matching';
+import { Category, getCloudDatabaseMatchKeyReport, Process, Source } from '@intezoid/data-matching';
 
 async function databaseMatchKeyReport() {
    const result = await getCloudDatabaseMatchKeyReport({
       apiKey: 'your-interzoid-api-key',
+      process: Process.CREATE_TABLE,
+      category: Category.COMPANY,
+      source: Source.MYSQL,
+      connection: 'db_user:db_password@tcp(db_host)/database',
+      table: 'companies', // table to match
+      column: 'companyname', // column to match
+      reference: 'id', // optional reference column
+      newTable: 'companies_match_keys' // new table to create
+   });
+   console.log(result);
+}
+```
+
+#### Response
+```
+"Creating new table...Table companies_match_keys created successfully."
+```
+
+---
+
+### Match Key Report for a cloud database table
+
+#### Response options
+
+* Set `json` to `true` to return a JSON object with arrays of match clusters.
+* Set `html` to `true` to return results in plain text with clusters separated by html `<br>` tags.
+* Don't set either to return results in plain text with clusters separated by newlines.
+
+```typescript
+import { getCloudDatabaseMatchKeyReport, Source, Process, Category } from '@intezoid/data-matching';
+
+async function databaseMatchKeyReport() {
+   const result = await getCloudDatabaseMatchKeyReport({
+      apiKey: 'your-interzoid-api-key',
+      process: Process.MATCH_REPORT,
       category: Category.COMPANY,
       source: Source.MYSQL,
       connection: 'db_user:db_password@tcp(db_host)/database',
       table: 'companies',
       column: 'companyname',
       reference: 'id',
-      process: Process.MATCH_REPORT,
       json: true,
    });
    console.log(JSON.stringify(result, null, 2));
 }
 ```
 
-##### Sample Response
+#### Sample Response
 
 ```json
 {
@@ -243,23 +280,6 @@ async function databaseMatchKeyReport() {
     ],
     [
       {
-        "Data": "Twitter",
-        "Reference": "30",
-        "SimKey": "40hBt2WEN9a0Vc6OBbvKx9p-ANzGqzFRk8bKAnpppns"
-      },
-      {
-        "Data": "\"Twitter, Inc.\"",
-        "Reference": "16",
-        "SimKey": "40hBt2WEN9a0Vc6OBbvKx9p-ANzGqzFRk8bKAnpppns"
-      },
-      {
-        "Data": "Twitter",
-        "Reference": "15",
-        "SimKey": "40hBt2WEN9a0Vc6OBbvKx9p-ANzGqzFRk8bKAnpppns"
-      }
-    ],
-    [
-      {
         "Data": "Netflix",
         "Reference": "15",
         "SimKey": "8c6BY0KP9MYiDezQaKL3bH3iHfDU2wCMMTD9v0EeZJ8"
@@ -269,30 +289,92 @@ async function databaseMatchKeyReport() {
         "Reference": "34",
         "SimKey": "8c6BY0KP9MYiDezQaKL3bH3iHfDU2wCMMTD9v0EeZJ8"
       }
-    ],
-    [
-      {
-        "Data": "Sony",
-        "Reference": "34",
-        "SimKey": "9qe8E7w3HgyaNxI4uy9A7Gq1DxpTlNVNJw7G0goGi98"
-      },
-      {
-        "Data": "Sony",
-        "Reference": "31",
-        "SimKey": "9qe8E7w3HgyaNxI4uy9A7Gq1DxpTlNVNJw7G0goGi98"
-      },
-      {
-        "Data": "Sony Corporation",
-        "Reference": "32",
-        "SimKey": "9qe8E7w3HgyaNxI4uy9A7Gq1DxpTlNVNJw7G0goGi98"
-      }
     ]
+  ]
  }
 ```
 
+---
 
 ### Delimited File Match Key Report
 
-```typescript
+Provide a URL to a delimited file (CSV or TSV) and the API will return a match key report for the data in the file.
 
+```typescript
+import { getDelimitedFileMatchKeyReport, Process, Source } from '@intezoid/data-matching';
+
+async function csvdFileMatchReport() {
+   const result = await getDelimitedFileMatchKeyReport({
+      apiKey: 'your-interzoid-api-key',
+      category: 'company',
+      source: Source.CSV,
+      connection: 'https://dl.interzoid.com/csv/companies.csv',
+      table: Source.CSV,
+      column: '1', // column number to match
+      process: Process.MATCH_REPORT,
+      json: true,
+   });
+   console.log(JSON.stringify(result, null, 2));
+}
+
+```
+
+#### Result
+
+```json
+{
+  "Status": "success",
+  "Message": "",
+  "MatchClusters": [
+    [
+      {
+        "Data": "Good Year Tire & Rubber",
+        "Reference": "",
+        "SimKey": "140xAiUxvDysV56LZzogzDwLuYLd2U7E5sVAXd1nKd8"
+      },
+      {
+        "Data": "Goodyear Tire Inc",
+        "Reference": "Transportaions",
+        "SimKey": "140xAiUxvDysV56LZzogzDwLuYLd2U7E5sVAXd1nKd8"
+      }
+    ],
+    [
+      {
+        "Data": "Pederson Tooling Inc.",
+        "Reference": "Transportaions",
+        "SimKey": "7oOMieCdoyxjt7_oKbE2xGngnZGdG75CFU5pEfhU5z8"
+      },
+      {
+        "Data": "Peterson Tools",
+        "Reference": "Services",
+        "SimKey": "7oOMieCdoyxjt7_oKbE2xGngnZGdG75CFU5pEfhU5z8"
+      }
+    ]
+  ]
+}
+```
+
+---
+
+## Account Information
+
+This API retrieves the current amount of remaining purchased (or trial) credits for a license key.
+
+Using this function does **not** deduct credits from your account.
+
+```typescript
+import { getRemainingCredits } from '@intezoid/data-matching';
+
+async function remainingCredits() {
+  const result = getRemainingCredits({apiKey: 'your-interzoid-api-key'});
+    console.log(result);
+}
+```
+
+#### Result
+```json
+{
+  "credits": "9998",
+  "code": "Success"
+}
 ```
