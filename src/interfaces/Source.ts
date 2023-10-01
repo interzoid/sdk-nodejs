@@ -19,7 +19,6 @@
  * @property {string} COCKROACHDB - CockroachDB
  * @property {string} CSV - CSV File
  * @property {string} TSV_FILE - TSV File
- * @property {string} EXCEL_FILE - Excel File
  */
 export enum Source {
   POSTGRES = 'Postgres',
