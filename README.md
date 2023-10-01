@@ -182,18 +182,45 @@ async function organizationNameMatchScore() {
 
 ### Introduction
 
-Interzoid's Cloud Data Connect is a set of functions that allow you to match data in your cloud database with Interzoid's data matching algorithms.
+Interzoid's Cloud Data Connect is a set of functions that allow you to match data in your cloud database or delimited text file such as CSV and TSV with Interzoid's data matching algorithms.
 
-### Matching Processes
 
-The `process` parameter determines the type of matching process to run. The package provides an `enum` called `Process` that contains the available options.
+### Matching Process
 
-| Process | Description |
-| --- | --- |
-| `Process.MATCH_REPORT` | Generate a report of all found clusters of similar data. |
-|`Process.CREATE_TABLE` | Creates a new table in the source database with all the similarity keys for each record in the source table, so they can be used for additional queries. |
-|`Process.GEN_SQL` | Generate the SQL INSERT statements to store the similarity keys in a database. |
-|`Process.KEYS_ONLY` | Output a generated similarity key for every record in the dataset. |
+The `process` parameter determines the type of matching process to run. The package provides an `enum` called [`Process`](src/interfaces/Process.ts) that contains the available options.
+
+| Process                | Description                                                                                                                                              |
+|------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Process.MATCH_REPORT` | Generate a report of all found clusters of similar data.                                                                                                 |
+| `Process.CREATE_TABLE` | Creates a new table in the source database with all the similarity keys for each record in the source table, so they can be used for additional queries. |
+| `Process.GEN_SQL`      | Generate the SQL INSERT statements to store the similarity keys in a database.                                                                           |
+| `Process.KEYS_ONLY`    | Output a generated similarity key for every record in the dataset.                                                                                       |
+
+
+### Source
+
+The `source` parameter determines the type of data source you're matching. The package provides an `enum` called [`Source`](src/interfaces/Source.ts) that contains the available options. Some commonly used examples are:
+
+| Source              | Description                          |
+|---------------------|--------------------------------------|
+| `Source.MYSQL`      | Match data in a MySQL database.      |
+| `Source.POSTGRES`   | Match data in a PostgreSQL database. |
+| `Source.MARIADB`    | Match data in a MariaDB database.    |
+| `Source.DATABRICKS` | Match data in a Databricks table.    |
+| `Source.CSV`        | Match data in a CSV file.            |
+
+Please see the [source code](src/interfaces/Source.ts) for a complete list of available options.
+
+
+### Category
+
+The `category` parameter determines the type of data you're matching. The package provides an `enum` called [`Category`](src/interfaces/Category.ts) that contains the available options.
+
+| Category            | Description             |
+|---------------------|-------------------------|
+| `Category.COMPANY`  | Match company names.    |
+| `Category.FULLNAME` | Match individual names. |
+| `Category.ADDRESS`  | Match addresses.        |
 
 ### Connection Strings
 
@@ -219,10 +246,10 @@ async function databaseMatchKeyReport() {
       category: Category.COMPANY,
       source: Source.MYSQL,
       connection: 'db_user:db_password@tcp(db_host)/database',
-      table: 'companies', // table to match
-      column: 'companyname', // column to match
-      reference: 'id', // optional reference column
-      newTable: 'companies_match_keys' // new table to create
+      table: 'companies',                 // table to match
+      column: 'companyname',              // column to match
+      reference: 'id',                    // optional reference column
+      newTable: 'companies_match_keys'    // new table to create
    });
    console.log(result);
 }
@@ -304,17 +331,17 @@ async function databaseMatchKeyReport() {
 Provide a URL to a delimited file (CSV or TSV) and the API will return a match key report for the data in the file.
 
 ```typescript
-import { getDelimitedFileMatchKeyReport, Process, Source } from '@intezoid/data-matching';
+import { getDelimitedFileMatchKeyReport, Process, Source, Category } from '@intezoid/data-matching';
 
-async function csvdFileMatchReport() {
+async function csvFileMatchReport() {
    const result = await getDelimitedFileMatchKeyReport({
       apiKey: 'your-interzoid-api-key',
-      category: 'company',
-      source: Source.CSV,
-      connection: 'https://dl.interzoid.com/csv/companies.csv',
-      table: Source.CSV,
-      column: '1', // column number to match
       process: Process.MATCH_REPORT,
+      category: Category.COMPANY,
+      source: Source.CSV,
+      table: Source.CSV,
+      connection: 'https://dl.interzoid.com/csv/companies.csv',
+      column: '1',          // column number to match
       json: true,
    });
    console.log(JSON.stringify(result, null, 2));
