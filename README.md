@@ -17,8 +17,8 @@ This is a Node.js SDK for Interzoid's Generative-AI powered data matching, data 
    1. [Introduction](#introduction)
    2. [Matching Processes](#matching-processes)
    3. [Connection Strings](#connection-strings)
-   4. [Match and write results to a new table](#match-and-write-results-to-a-new-table)
-   5. [Match Key Report for a delimited (CSV or TSV) text file](#match-key-report-for-a-delimited-csv-or-tsv-text-file)
+   4. [Match cloud database table and write results to a new table](#match-and-write-results-to-a-new-table)
+   5. [Match Key Report for a cloud database table](#match-key-report-for-a-cloud-database-table)
    6. [Delimited File Match Key Report](#delimited-file-match-key-report)
 5. [Interzoid Account Information (Remaining Credits)](#account-information)
 --- 
@@ -188,16 +188,18 @@ Interzoid's Cloud Data Connect is a set of functions that allow you to match dat
 
 The `process` parameter determines the type of matching process to run. The package provides an `enum` called `Process` that contains the available options.
 
-The options are:
-- `Process.MATCH_REPORT` - Generate a report of all found clusters of similar data.
-- `Process.CREATE_TABLE` - Creates a new table in the source database with all the similarity keys
-  for each record in the source table, so they can be used for additional queries.
-- `Process.GEN_SQL` - Generate the SQL INSERT statements to store the similarity keys in a database.
-- `Process.KEYS_ONLY` - Output a generated similarity key for every record in the dataset.
+| Process | Description |
+| --- | --- |
+| `Process.MATCH_REPORT` | Generate a report of all found clusters of similar data. |
+|`Process.CREATE_TABLE` | Creates a new table in the source database with all the similarity keys for each record in the source table, so they can be used for additional queries. |
+|`Process.GEN_SQL` | Generate the SQL INSERT statements to store the similarity keys in a database. |
+|`Process.KEYS_ONLY` | Output a generated similarity key for every record in the dataset. |
 
 ### Connection Strings
 
-The `connection` parameter is a connection string for your database. The format of the connection string depends on the database you're connecting to. Please see [this page](https://connect.interzoid.com/connection-strings) for examples of connection strings for various databases.
+The `connection` parameter is a connection string for your database. The format of the connection string depends on the database you're connecting to. 
+
+Please see [this page](https://connect.interzoid.com/connection-strings) for examples of connection strings for various databases.
 
 ### Match and write results to a new table
 
@@ -208,7 +210,7 @@ Don't create the table yourself, the process will create it for you.
 You'll have to grant the user you're connecting with the ability to create a new table in the database in addition to the ability to read from the table you're matching.
 
 ```typescript
-import { Category, getCloudDatabaseMatchKeyReport, Process, Source } from '@intezoid/data-matching';
+import { getCloudDatabaseMatchKeyReport, Process, Category, Source } from '@intezoid/data-matching';
 
 async function databaseMatchKeyReport() {
    const result = await getCloudDatabaseMatchKeyReport({
