@@ -53,7 +53,7 @@ To learn more about the technology behind these APIs, please visit https://docs.
 This API provides a hashed similarity key from the input data used to match with other similar full name data. Use the generated similarity key, rather than the actual data itself, to match and/or sort individual name data by similarity. This avoids the problems of data inconsistency, misspellings, and name variations when matching within a single dataset, and can also help matching across datasets or for more advanced searching.
 
 ```typescript
-import { getFullNameMatchKey } from '@intezoid/data-matching';
+import { getFullNameMatchKey } from '@interzoid/data-matching';
 
 async function fullNameMatch() {
     const result = await getFullNameMatchKey({apiKey: 'your-interzoid-api-key', fullName: 'John Smith'});
@@ -85,7 +85,7 @@ The optional `algorithm` parameter provides multiple matching algorithms:
 - The default value for the optional `algorithm` parameter is `wide`. 
 
 ```typescript
-import { getCompanyNameMatchKey } from '@intezoid/data-matching';
+import { getCompanyNameMatchKey } from '@interzoid/data-matching';
 
 async function companyNameMatch() {
     const result = await getCompanyNameMatchKey({apiKey: 'your-interzoid-api-key', company: 'Microsoft', algorithm: 'medium'});
@@ -104,15 +104,15 @@ async function companyNameMatch() {
 ---
 
 #### Address Match Key
-This API provides a hashed similarity key from the input data used to match with other similar address data. Use the generated similarity key, rather than the actual data itself, to match and/or sort address data by similarity. This avoids the problems of data inconsistency, misspellings, and address element variations when matching either withing a single dataset, or across datasets. It also provides for broader searching capabilities.
+This API provides a hashed similarity key from the input data used to match with other similar address data. Use the generated similarity key, rather than the actual data itself, to match and/or sort address data by similarity. This avoids the problems of data inconsistency, misspellings, and address element variations when matching either within a single dataset, or across datasets. It also provides for broader searching capabilities.
 
-You can choose from two matching algorithms, `wide` and `narrow`. 
+You can choose from two matching algorithms, `wide` and `narrow`.
 - `narrow` considers a unit number (suite, apartment, unit, etc.) when generating similarity keys. This ensures individual units are identified separately when comparing generated keys.
 - `wide` parameter will not consider the unit numbers, generating matching similarity keys based on the primary address only.
 - The default value for the optional `algorithm` parameter is `narrow`. 
 
 ```typescript
-import { getAddressMatchKey } from '@intezoid/data-matching';
+import { getAddressMatchKey } from '@interzoid/data-matching';
 
 async function addressMatch() {
   const result = await getAddressMatchKey({apiKey: 'your-interzoid-api-key', address: '500 main street', algorithm: 'narrow'});
@@ -140,7 +140,7 @@ We provide 2 operations for match scoring: Organization name and Full name. The 
 This API provides a match score (likelihood of matching) between two individual names on a scale of 0-100, where 100 is the highest possible match.
     
 ```typescript
-import { getFullNameMatchScore } from '@intezoid/data-matching';
+import { getFullNameMatchScore } from '@interzoid/data-matching';
 
 async function fullNameMatchScore() {
   const result = await getFullNameMatchScore({apiKey: 'your-interzoid-api-key', value1: 'John Smith', value2: 'John Smyth'});
@@ -160,10 +160,10 @@ async function fullNameMatchScore() {
 ---
 
 #### Organization Name Match Score
-This API provides a match score (likelihood of matching) from 0-100 between two organization names.
+This API provides a match score (likelihood of matching) ranging from 0 to 100 between two organization names.
 
 ```typescript
-import { getOrganizationMatchScore } from '@intezoid/data-matching';
+import { getOrganizationMatchScore } from '@interzoid/data-matching';
 
 async function organizationNameMatchScore() {
   const result = await getOrganizationNameMatchScore({apiKey: 'your-interzoid-api-key', value1: 'Apple', value2: 'Apple Inc.'});
@@ -236,12 +236,12 @@ Please see [this page](https://connect.interzoid.com/connection-strings) for exa
 
 Set the `process` parameter to `CREATE_TABLE` to create a new table in your database with the match keys. The `newTable` parameter is the name of the new table to create. This table will be created by the process, and will contain the original data and the similarity key. 
 
-Don't create the table yourself, the process will create it for you. 
+**Do not create the table manually; the process will handle the creation.**
 
 You'll have to grant the user you're connecting with the ability to create a new table in the database in addition to the ability to read from the table you're matching.
 
 ```typescript
-import { getCloudDatabaseMatchKeyReport, Process, Category, Source } from '@intezoid/data-matching';
+import { getCloudDatabaseMatchKeyReport, Process, Category, Source } from '@interzoid/data-matching';
 
 async function databaseMatchKeyReport() {
    const result = await getCloudDatabaseMatchKeyReport({
@@ -275,7 +275,7 @@ async function databaseMatchKeyReport() {
 * Don't set either to return results in plain text with clusters separated by newlines.
 
 ```typescript
-import { getCloudDatabaseMatchKeyReport, Source, Process, Category } from '@intezoid/data-matching';
+import { getCloudDatabaseMatchKeyReport, Source, Process, Category } from '@interzoid/data-matching';
 
 async function databaseMatchKeyReport() {
    const result = await getCloudDatabaseMatchKeyReport({
@@ -335,7 +335,7 @@ async function databaseMatchKeyReport() {
 Provide a URL to a delimited file (CSV or TSV) and the API will return a match key report for the data in the file.
 
 ```typescript
-import { getDelimitedFileMatchKeyReport, Process, Source, Category } from '@intezoid/data-matching';
+import { getDelimitedFileMatchKeyReport, Process, Source, Category } from '@interzoid/data-matching';
 
 async function csvFileMatchReport() {
    const result = await getDelimitedFileMatchKeyReport({
@@ -397,7 +397,7 @@ This API retrieves the current amount of remaining purchased (or trial) credits 
 Using this function does **not** deduct credits from your account.
 
 ```typescript
-import { getRemainingCredits } from '@intezoid/data-matching';
+import { getRemainingCredits } from '@interzoid/data-matching';
 
 async function remainingCredits() {
   const result = getRemainingCredits({apiKey: 'your-interzoid-api-key'});
