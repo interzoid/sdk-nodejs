@@ -2,7 +2,7 @@
 
 **Version: 1.1.0**
 
-This is a Node.js SDK for Interzoid's Generative-AI powered data matching, data quality, data cleansing, and data normalization for organization and individual name data. Functions include the generation of similarity keys for identifying and matching inconsistent name data, as well as comparing and scoring data for matching purposes.
+This is a Node.js SDK for Interzoid's Generative-AI powered data matching, data quality, data cleansing, and data normalization for organization and individual name data. Functions include the generation of similarity keys (also called match keys) for identifying and matching inconsistent name data, as well as comparing and scoring data for matching purposes. The concept is that the same similarity key will be algorithmically generated for different permutations of the same data content, such as GE, Gen Elec, General Electric all generating the same similarity key. Then, these similarity keys can be used as the basis of matching data, identifying duplicates, and resolving inconsistencies that can otherwise degrade the usefulness and value of data-driven applications, processes, or anything else that makes use of data. These similarity keys form the basis of many of the different functions available in the SDK that make use of Generative AI, Machine Learning, specialized algorithms, and extensive knowledge bases - all in the Cloud - to provide its results.
 
 #### Table of Contents
 1. [API Key](#api-key)
@@ -18,12 +18,12 @@ This is a Node.js SDK for Interzoid's Generative-AI powered data matching, data 
 4. [Interzoid Cloud Data Connect](#cloud-data-connect)
    1. [Introduction](#introduction)
    2. [Matching Process](#matching-process)
-   3. [Source](#source)
-   4. [Category](#category)
+   3. [Sources](#source)
+   4. [Processing Categories](#category)
    5. [Connection Strings](#connection-strings)
-   6. [Match and write results to a new table](#match-and-write-results-to-a-new-table)
+   6. [Match and write keys to a new cloud database table](#match-and-write-results-to-a-new-table)
    7. [Match Key Report for a cloud database table](#match-key-report-for-a-cloud-database-table)
-   8. [Delimited File Match Key Report](#delimited-file-match-key-report)
+   8. [Text File Match Key Report](#text-file-match-key-report)
 5. [Interzoid Account Information (Remaining Credits)](#account-information)
 --- 
 
@@ -43,7 +43,7 @@ npm install @interzoid/data-matching
 ---
 
 ## Data Matching APIs
-Interzoid uses algorithmically generated similarity keys leveraging Generative AI, Large Language Models (LLMs) and Machine Learning to intelligently match data within or across data sources.
+Interzoid uses algorithmically generated similarity keys leveraging Generative AI, Large Language Models (LLMs), Machine Learning, specialized algorithms, and extensive knowledge bases to intelligently match data within or across data sources.
 
 To learn more about the technology behind these APIs, please visit https://docs.interzoid.com/entries/understanding-data-matching
 
@@ -195,15 +195,15 @@ The `process` parameter determines the type of matching process to run. The pack
 
 | Process                | Description                                                                                                                                              |
 |------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `Process.MATCH_REPORT` | Generate a report of all found clusters of similar data.                                                                                                 |
+| `Process.MATCH_REPORT` | Generate a report of all found clusters of similar data that share the same generated similarity key.                                                                                                 |
 | `Process.CREATE_TABLE` | Creates a new table in the source database with all the similarity keys for each record in the source table, so they can be used for additional queries. |
-| `Process.GEN_SQL`      | Generate the SQL INSERT statements to store the similarity keys in a database.                                                                           |
+| `Process.GEN_SQL`      | Generate the SQL INSERT statements to store the similarity keys in a database for ability to review before execution.                                                                          |
 | `Process.KEYS_ONLY`    | Output a generated similarity key for every record in the dataset.                                                                                       |
 
 
 ### Source
 
-The `source` parameter determines the type of data source you're matching. The package provides an `enum` called [`Source`](src/interfaces/Source.ts) that contains the available options. Some commonly used examples are:
+The `source` parameter determines the type of data source containing the data you are performing matching functions with. The package provides an `enum` called [`Source`](src/interfaces/Source.ts) that contains the available options. Some commonly used examples are:
 
 | Source              | Description                          |
 |---------------------|--------------------------------------|
@@ -330,7 +330,7 @@ async function databaseMatchKeyReport() {
 
 ---
 
-### Delimited File Match Key Report
+### Text File Match Key Report
 
 Provide a URL to a delimited file (CSV or TSV) and the API will return a match key report for the data in the file.
 
