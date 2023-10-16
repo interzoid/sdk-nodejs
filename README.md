@@ -19,7 +19,7 @@ This is a Node.js SDK for Interzoid's Generative-AI powered data matching, data 
 
 ## API Key
 
-Please visit https://www.interzoid.com/register-api-account to register for an API key and receive free usage credits. 
+Please visit https://www.interzoid.com/register-api-account to register for an API key and receive free usage credits. This API key will be used as a parameter with each call to the API for authentication and usage tracking.
 
 ---
 
@@ -33,14 +33,14 @@ npm install @interzoid/data-matching
 ---
 
 ## Data Matching APIs
-Interzoid uses algorithmically generated similarity keys leveraging Generative AI, Large Language Models (LLMs), Machine Learning, specialized algorithms, and extensive knowledge bases to intelligently match data within or across data sources.
+Interzoid uses algorithmically generated similarity keys leveraging Generative AI, Large Language Models (LLMs), Machine Learning, specialized algorithms, and extensive knowledge bases to intelligently match data within or across data sources. Match rates can increase significantly when similarity keys are used with important data.
 
 To learn more about the technology behind these APIs, please visit https://docs.interzoid.com/entries/understanding-data-matching
 
 ### Match Key Functions
 
 #### Full Name Match Key
-This API provides a hashed similarity key from the input data used to match with other similar full name data. Use the generated similarity key, rather than the actual data itself, to match and/or sort individual name data by similarity. This avoids the problems of data inconsistency, misspellings, and name variations when matching within a single dataset, and can also help matching across datasets or for more advanced searching. Match rates can increase significantly when similarity keys are used with important data.
+This API provides a hashed similarity key from the input data used to match with other similar full name data. Use the generated similarity key, rather than the actual data itself, to match and/or sort individual name data by similarity. This avoids the problems of data inconsistency, misspellings, and name variations when matching within a single dataset, and can also help matching across datasets or for more advanced searching. 
 
 ```typescript
 import { getFullNameMatchKey } from 'interzoid';
