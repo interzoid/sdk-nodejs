@@ -29,7 +29,7 @@ This is a Node.js SDK for Interzoid's Generative-AI powered data matching, data 
 
 ## API Key
 
-Please visit https://www.interzoid.com/register-api-account to register for an API key and receive free usage credits. This API key will be used as a parameter with each call to the API for authentication and usage tracking.
+Please visit https://www.interzoid.com/register-api-account to register for an API key and receive free usage credits. This API key will be used as a parameter with each call to the API (via the SDK function) for authentication and usage tracking.
 
 ---
 
