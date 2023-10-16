@@ -29,7 +29,7 @@ This is a Node.js SDK for Interzoid's Generative-AI powered data matching, data 
 
 ## API Key
 
-Please visit https://www.interzoid.com/register-api-account to register for an API key and receive free usage credits. 
+Please visit https://www.interzoid.com/register-api-account to register for an API key and receive free usage credits. This API key will be used as a parameter with each call to the API for authentication and usage tracking.
 
 ---
 
@@ -43,14 +43,15 @@ npm install @interzoid/data-matching
 ---
 
 ## Data Matching APIs
-Interzoid uses algorithmically generated similarity keys leveraging Generative AI, Large Language Models (LLMs), Machine Learning, specialized algorithms, and extensive knowledge bases to intelligently match data within or across data sources.
 
-To learn more about the technology behind these APIs, please visit https://docs.interzoid.com/entries/understanding-data-matching
+Interzoid uses algorithmically generated similarity keys leveraging Generative AI, Large Language Models (LLMs), Machine Learning, specialized algorithms, and extensive knowledge bases to intelligently match data within or across data sources. Match rates can increase significantly when similarity keys are used with important data.
+
+To learn more about the technology behind these APIs and to better understand how to make use of similarity keys, please visit https://docs.interzoid.com/entries/understanding-data-matching
 
 ### Match Key Functions
 
 #### Full Name Match Key
-This API provides a hashed similarity key from the input data used to match with other similar full name data. Use the generated similarity key, rather than the actual data itself, to match and/or sort individual name data by similarity. This avoids the problems of data inconsistency, misspellings, and name variations when matching within a single dataset, and can also help matching across datasets or for more advanced searching.
+This API provides a hashed similarity key from the input data used to match with other similar full name data. Use the generated similarity key, rather than the actual data itself, to match and/or sort individual name data by similarity as similar individual names will generate the same similarity key. This avoids the problems of data inconsistency, misspellings, and name variations when matching within a single dataset, and can also help matching across datasets or for more advanced searching. 
 
 ```typescript
 import { getFullNameMatchKey } from '@interzoid/data-matching';
@@ -74,7 +75,7 @@ async function fullNameMatch() {
 
 #### Company Name Match Key
 
-This API provides a hashed similarity key from the input data used to match with other similar company name data. Use the generated similarity key, rather than the actual data itself, to match and/or sort company name data to identify inconsistently represented company and organization name data. This avoids the problems of data inconsistency, misspellings, and name variations when matching within a single dataset or across multiple data sources.
+This API provides a hashed similarity key from the input data used to match with other similar company name data. Use the generated similarity key, rather than the actual data itself, to match and/or sort company name data to identify inconsistently represented company and organization name data, as similar organization and company names will generate the same similarity key. This avoids the problems of data inconsistency, misspellings, and name variations when matching within a single dataset or across multiple data sources.
 
 The optional `algorithm` parameter provides multiple matching algorithms:
 
@@ -104,7 +105,8 @@ async function companyNameMatch() {
 ---
 
 #### Address Match Key
-This API provides a hashed similarity key from the input data used to match with other similar address data. Use the generated similarity key, rather than the actual data itself, to match and/or sort address data by similarity. This avoids the problems of data inconsistency, misspellings, and address element variations when matching either within a single dataset, or across datasets. It also provides for broader searching capabilities.
+
+This API provides a hashed similarity key from the input data used to match with other similar address data. Use the generated similarity key, rather than the actual data itself, to match and/or sort address data by similarity, as similar addresses will generate the same similarity key. This avoids the problems of data inconsistency, misspellings, and address element variations when matching either withing a single dataset, or across datasets. It also provides for broader searching capabilities.
 
 You can choose from two matching algorithms, `wide` and `narrow`.
 - `narrow` considers a unit number (suite, apartment, unit, etc.) when generating similarity keys. This ensures individual units are identified separately when comparing generated keys.
@@ -133,7 +135,7 @@ async function addressMatch() {
 
 ### Match Score Functions
 
-We provide 2 operations for match scoring: Organization name and Full name. The request params for these operations are identical--provide 2 values and the API returns a matching score.
+We provide two operations for match scoring: Organization name and Full name. The request parameters for these operations are identical--provide two values and the API returns a matching score on a scale of 0-100 indicating how similar the two values are and how close they are to potentially being a match. This score is determined through a series of logic that includes the use of Generative AI, Machine Learning, specialized algorithms, and extensive knowledge bases. Best practices include setting a threshold, for example 50, 60, or 70 as indicating a potential match and then dealing with the potential matches as desired.
 
 
 #### Full Name Match Score
