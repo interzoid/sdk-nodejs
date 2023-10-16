@@ -3,11 +3,15 @@ import qs from 'qs';
 
 /**
  * Interzoid API client
+ * @class InterzoidApi
+ * @version 1.0.0
  */
 export class InterzoidApi {
-  private static readonly baseUrl = 'https://api.interzoid.com/';
+  private static readonly API_BASE_URL: string = 'https://api.interzoid.com/';
+  private static readonly CONNECT_BASE_URL: string =
+    'https://connect.interzoid.com/';
 
-  public static async doGetRequest(
+  static async doApiGetRequest(
     resource: string,
     apiKey: string,
     params?: object,
@@ -23,13 +27,35 @@ export class InterzoidApi {
       },
     };
 
-    const requestUri = this.baseUrl + resource;
+    const requestUri = this.API_BASE_URL + resource;
+    return await this.get(requestUri, config);
+  }
 
+  static async doCloudConnectRequest(params: object) {
+    const config: AxiosRequestConfig = {
+      params: params,
+      headers: {
+        'User-Agent': 'axios/data-matching-npm/1.0.0',
+      },
+      paramsSerializer: (params: object) => {
+        return qs.stringify(params);
+      },
+    };
+
+    const requestUri = this.CONNECT_BASE_URL + 'run';
+    return await this.get(requestUri, config);
+  }
+
+  private static async get(
+    requestUri: string,
+    config: AxiosRequestConfig<any>,
+  ) {
     let response: AxiosResponse;
-
     try {
       response = await axios.get(requestUri, config);
+      // console.log(response.status);
     } catch (error) {
+      ``;
       throw new Error(`Network or server error: ${error}`);
     }
 

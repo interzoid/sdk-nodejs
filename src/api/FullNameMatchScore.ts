@@ -18,7 +18,7 @@ export async function getFullNameMatchScore(
   }
   const resource = 'getfullnamematchscore';
 
-  const resp = await InterzoidApi.doGetRequest(resource, request.apiKey, {
+  const resp = await InterzoidApi.doApiGetRequest(resource, request.apiKey, {
     fullname1: request.value1,
     fullname2: request.value2,
   });
