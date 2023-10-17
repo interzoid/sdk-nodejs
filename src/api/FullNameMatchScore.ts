@@ -28,7 +28,7 @@ export async function getFullNameMatchScore(
 /**
  * Validate MatchScoreRequest
  * @param obj
- * @returns {obj is MatchScoreRequest}
+ * @returns {MatchScoreRequest}
  */
 function isValidFullNameMatchScoreRequest(obj: any): obj is MatchScoreRequest {
   return (

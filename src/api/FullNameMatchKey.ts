@@ -31,7 +31,7 @@ export async function getFullNameMatchKey(
 /**
  * Validate FullNameMatchKeyRequest
  * @param obj
- * @returns {obj is FullNameMatchKeyRequest}
+ * @returns {FullNameMatchKeyRequest}
  */
 function isValidFullNameMatchKeyRequest(
   obj: any,

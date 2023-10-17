@@ -21,6 +21,7 @@ import { CloudWorkloadResponse } from './interfaces/CloudWorkloadResponse';
 import { Category } from './interfaces/Category';
 import { Source } from './interfaces/Source';
 import { Process } from './interfaces/Process';
+import { MatchClusterItem, MatchCluster } from './interfaces/MatchCluster';
 
 export {
   getAddressMatchKey,
@@ -46,4 +47,6 @@ export {
   Category,
   Source,
   Process,
+  MatchClusterItem,
+  MatchCluster,
 };

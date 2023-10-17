@@ -34,7 +34,7 @@ export async function getCompanyNameMatchKey(
 /**
  * Validate CompanyNameMatchKeyRequest
  * @param obj
- * @returns {obj is FullNameMatchKeyRequest}
+ * @returns {FullNameMatchKeyRequest}
  */
 function isValidCompanyNameMatchKeyRequest(
   obj: any,

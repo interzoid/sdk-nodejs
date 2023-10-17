@@ -33,7 +33,7 @@ export async function getAddressMatchKey(
 /**
  * Validate AddressMatchKeyRequest
  * @param obj
- * @returns {obj is AddressMatchKeyRequest}
+ * @returns {AddressMatchKeyRequest}
  */
 function isValidAddressMatchKeyRequest(
   obj: any,
