@@ -20,19 +20,20 @@
  * @property {string} CSV - CSV File
  * @property {string} TSV_FILE - TSV File
  */
+
 export enum Source {
   POSTGRES = 'Postgres',
-  MYSQL = 'mysql',
-  SNOWFLAKE = 'snowflake',
-  DATABRICKS = 'databricks',
+  MYSQL = 'MySQL',
+  SNOWFLAKE = 'Snowflake',
+  DATABRICKS = 'Databricks',
   AWS_AURORA_POSTGRES = 'AWS Aurora Postgres',
   AWS_AURORA_MYSQL = 'AWS Aurora MySQL',
   AWS_RDS_POSTGRES = 'AWS RDS Postgres',
   AWS_RDS_MYSQL = 'AWS RDS MySQL',
   AWS_RDS_SQL_SERVER = 'AWS RDS SQL Server',
   GOOGLE_SQL_CLOUD_POSTGRES = 'Google SQL Cloud Postgres',
-  GOOGLE_SQL_CLOUD_MYSQL = 'Google SQL CLoud MySQL',
-  MARIADB = 'mariadb',
+  GOOGLE_SQL_CLOUD_MYSQL = 'Google SQL Cloud MySQL',
+  MARIADB = 'MariaDB',
   MARIADB_SKYSQL = 'MariaDB SkySQL',
   MICROSOFT_SQL_SERVER = 'Microsoft SQL Server',
   AZURE_SQL = 'Azure SQL',
@@ -40,4 +41,5 @@ export enum Source {
   COCKROACHDB = 'CockroachDB',
   CSV = 'CSV',
   TSV = 'TSV',
+  EXCEL = 'Excel',
 }

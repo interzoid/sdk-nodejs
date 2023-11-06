@@ -58,10 +58,12 @@ function isValidCsvMatchKeyReportRequest(obj: any): {
   // Validate source
   if (
     !obj?.source ||
-    (obj.source !== Source.CSV && obj.source !== Source.TSV)
+    (obj.source !== Source.CSV &&
+      obj.source !== Source.TSV &&
+      obj.source !== Source.EXCEL)
   ) {
     isValid = false;
-    errors.push("Invalid 'source'. It must be either 'CSV' or 'TSV'.");
+    errors.push("Invalid 'source'. It must be 'CSV', 'TSV' or 'Excel.");
   }
 
   // Validate category

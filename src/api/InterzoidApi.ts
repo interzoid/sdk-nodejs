@@ -19,7 +19,7 @@ export class InterzoidApi {
     const config: AxiosRequestConfig = {
       headers: {
         'x-api-key': apiKey,
-        'User-Agent': 'axios/data-matching-npm/1.0.0',
+        'x-client': 'axios/data-matching-npm/1.0.0',
       },
       params: params,
       paramsSerializer: (params: object) => {
@@ -35,7 +35,7 @@ export class InterzoidApi {
     const config: AxiosRequestConfig = {
       params: params,
       headers: {
-        'User-Agent': 'axios/data-matching-npm/1.0.0',
+        'x-client': 'axios/data-matching-npm/1.0.0',
       },
       paramsSerializer: (params: object) => {
         return qs.stringify(params);
@@ -53,9 +53,7 @@ export class InterzoidApi {
     let response: AxiosResponse;
     try {
       response = await axios.get(requestUri, config);
-      // console.log(response.status);
     } catch (error) {
-      ``;
       throw new Error(`Network or server error: ${error}`);
     }
 
