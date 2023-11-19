@@ -10,5 +10,9 @@ import { InterzoidRequest } from '../interfaces/InterzoidRequest';
 export async function getAccountInfo(
   request: InterzoidRequest,
 ): Promise<InterzoidResponse> {
-  return InterzoidApi.doApiGetRequest('getremainingcredits', request.apiKey);
+  const response = await InterzoidApi.doApiGetRequest(
+    'getremainingcredits',
+    request.apiKey,
+  );
+  return response as InterzoidResponse;
 }

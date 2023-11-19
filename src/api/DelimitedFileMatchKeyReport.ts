@@ -20,7 +20,7 @@ export async function getDelimitedFileMatchKeyReport(
 
   const params = {
     function: 'match',
-    process: Process.MATCH_REPORT,
+    process: request.process || Process.MATCH_REPORT,
     table: request.source,
     source: request.source,
     connection: request.csvUrl,

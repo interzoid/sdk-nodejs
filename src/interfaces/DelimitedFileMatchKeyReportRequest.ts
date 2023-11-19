@@ -1,6 +1,7 @@
 import { InterzoidRequest } from './InterzoidRequest';
 import { Category } from './Category';
 import { Source } from './Source';
+import { Process } from './Process';
 
 /**
  * CsvMatchKeyReportRequest represents the request to the CSV or TSV Match Key Report API.
@@ -14,6 +15,7 @@ import { Source } from './Source';
  */
 export interface DelimitedFileMatchKeyReportRequest extends InterzoidRequest {
   source: Source.CSV | Source.TSV | Source.EXCEL;
+  process: Process.MATCH_REPORT | Process.KEYS_ONLY;
   category: Category;
   csvUrl: string;
   matchColumn: number;

@@ -3,6 +3,7 @@ import axios, { AxiosHeaders } from 'axios';
 import {
   DelimitedFileMatchKeyReportRequest,
   getDelimitedFileMatchKeyReport,
+  Process,
 } from '../../src';
 import { Category } from '../../src/interfaces/Category';
 import { Source } from '../../src/interfaces/Source';
@@ -16,6 +17,7 @@ describe('getCsvMatchKeyReport', () => {
     const request: DelimitedFileMatchKeyReportRequest = {
       category: Category.COMPANY,
       source: Source.CSV,
+      process: Process.MATCH_REPORT,
       csvUrl: 'https://dl.interzoid.com/csv/companies.csv',
       matchColumn: 1,
       apiKey: 'test-api-key',
