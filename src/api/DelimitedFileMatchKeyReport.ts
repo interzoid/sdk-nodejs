@@ -60,10 +60,13 @@ function isValidCsvMatchKeyReportRequest(obj: any): {
     !obj?.source ||
     (obj.source !== Source.CSV &&
       obj.source !== Source.TSV &&
-      obj.source !== Source.EXCEL)
+      obj.source !== Source.EXCEL &&
+      obj.source !== Source.PARQUET)
   ) {
     isValid = false;
-    errors.push("Invalid 'source'. It must be 'CSV', 'TSV' or 'Excel.");
+    errors.push(
+      "Invalid 'source'. It must be 'CSV', 'TSV', 'Excel, or 'Parquet'.",
+    );
   }
 
   // Validate category

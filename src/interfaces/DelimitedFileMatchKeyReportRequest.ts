@@ -14,7 +14,7 @@ import { Process } from './Process';
  * @property {'json' | 'html' | 'text'} [responseFormat] - The format of the response. If not specified, defaults to 'text'.
  */
 export interface DelimitedFileMatchKeyReportRequest extends InterzoidRequest {
-  source: Source.CSV | Source.TSV | Source.EXCEL;
+  source: Source.CSV | Source.TSV | Source.EXCEL | Source.PARQUET;
   process: Process.MATCH_REPORT | Process.KEYS_ONLY;
   category: Category;
   csvUrl: string;

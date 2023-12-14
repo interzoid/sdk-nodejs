@@ -42,4 +42,5 @@ export enum Source {
   CSV = 'CSV',
   TSV = 'TSV',
   EXCEL = 'Excel',
+  PARQUET = 'Parquet',
 }

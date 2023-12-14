@@ -37,6 +37,30 @@ describe('getCsvMatchKeyReport', () => {
     expect(result.Status).toEqual('success');
   });
 
+  it('returns a response when the request is valid', async () => {
+    const request: DelimitedFileMatchKeyReportRequest = {
+      category: Category.COMPANY,
+      source: Source.PARQUET,
+      process: Process.MATCH_REPORT,
+      csvUrl: 'https://dl.interzoid.com/parquet/companies.parquet',
+      matchColumn: 1,
+      apiKey: 'test-api-key',
+      responseFormat: 'json',
+    };
+    const mockResponse = {
+      data: { Status: 'success', Message: '', MatchClusters: [] },
+      status: 200,
+      statusText: 'OK',
+      headers: {},
+      config: {
+        headers: new AxiosHeaders(),
+      },
+    };
+    mockedAxios.get.mockResolvedValueOnce(mockResponse);
+    const result = await getDelimitedFileMatchKeyReport(request);
+    expect(result.Status).toEqual('success');
+  });
+
   it('throws an error when the request is invalid', async () => {
     const request: DelimitedFileMatchKeyReportRequest = {
       category: Category.COMPANY,
