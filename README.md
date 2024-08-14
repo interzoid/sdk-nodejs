@@ -1,6 +1,6 @@
 # Interzoid Data Matching Node.js SDK
 
-**Version: 1.2.4**
+**Version: 1.2.4.1**
 
 This is a Node.js SDK for Interzoid's Generative-AI powered data matching, data quality, data cleansing, and data normalization for organization and individual name data. Functions include the generation of similarity keys (also called match keys) for identifying and matching inconsistent name data, as well as comparing and scoring data for matching purposes. 
 
