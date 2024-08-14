@@ -20,7 +20,7 @@ export async function getAddressMatchKey(
     throw new Error('Invalid request. "apiKey" and "address" are required.');
   }
 
-  const algorithm = request.algorithm || 'narrow';
+  const algorithm = request.algorithm || 'ai-medium-narrow';
   const resource = 'getaddressmatchadvanced';
 
   const resp = await InterzoidApi.doApiGetRequest(resource, request.apiKey, {

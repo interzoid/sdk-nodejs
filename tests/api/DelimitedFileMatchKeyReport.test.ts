@@ -18,6 +18,7 @@ describe('getCsvMatchKeyReport', () => {
       category: Category.COMPANY,
       source: Source.CSV,
       process: Process.MATCH_REPORT,
+      algorithm: 'ai-medium',
       csvUrl: 'https://dl.interzoid.com/csv/companies.csv',
       matchColumn: 1,
       apiKey: 'test-api-key',
@@ -73,7 +74,7 @@ describe('getCsvMatchKeyReport', () => {
       responseFormat: 'json',
     };
     await expect(getDelimitedFileMatchKeyReport(request)).rejects.toThrow(
-      `Invalid 'source'. It must be either 'CSV' or 'TSV'.`,
+      `Invalid 'source'. It must be 'CSV', 'TSV', 'Excel, or 'Parquet'.`,
     );
   });
 

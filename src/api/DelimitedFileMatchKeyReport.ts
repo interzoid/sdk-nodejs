@@ -26,6 +26,7 @@ export async function getDelimitedFileMatchKeyReport(
     connection: request.csvUrl,
     category: request.category,
     column: request.matchColumn,
+    algorithm: request.algorithm,
     reference: request.referenceColumn,
     json: request.responseFormat === 'json',
     html: request.responseFormat === 'html',

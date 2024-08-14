@@ -22,7 +22,7 @@ export async function getCompanyNameMatchKey(
   }
 
   const resource = 'getcompanymatchadvanced';
-  const algorithm = request.algorithm || 'wide';
+  const algorithm = request.algorithm || 'ai-medium';
 
   const resp = await InterzoidApi.doApiGetRequest(resource, request.apiKey, {
     company: request.company,

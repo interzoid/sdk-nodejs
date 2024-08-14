@@ -9,5 +9,11 @@ import { InterzoidRequest } from './InterzoidRequest';
  */
 export interface AddressMatchKeyRequest extends InterzoidRequest {
   address: string;
-  algorithm?: 'wide' | 'narrow';
+  algorithm?:
+    | 'narrow'
+    | 'wide'
+    | 'ai-plus-narrow'
+    | 'ai-plus-wide'
+    | 'ai-medium-narrow'
+    | 'ai-medium-wide';
 }

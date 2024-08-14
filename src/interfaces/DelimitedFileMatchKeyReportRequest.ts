@@ -19,6 +19,7 @@ export interface DelimitedFileMatchKeyReportRequest extends InterzoidRequest {
   category: Category;
   csvUrl: string;
   matchColumn: number;
+  algorithm?: string;
   referenceColumn?: number;
   responseFormat?: 'json' | 'html' | 'text';
 }

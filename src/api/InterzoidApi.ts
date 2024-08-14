@@ -35,7 +35,7 @@ export class InterzoidApi {
     const config: AxiosRequestConfig = {
       params: params,
       headers: {
-        'x-client': 'axios/data-matching-npm/1.0.0',
+        'x-client': 'axios/data-matching-npm/1.2.4',
       },
       paramsSerializer: (params: object) => {
         return qs.stringify(params);
