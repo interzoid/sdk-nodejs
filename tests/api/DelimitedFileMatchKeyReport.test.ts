@@ -4,9 +4,9 @@ import {
   DelimitedFileMatchKeyReportRequest,
   getDelimitedFileMatchKeyReport,
   Process,
+  Category,
+  Source,
 } from '../../src';
-import { Category } from '../../src/interfaces/Category';
-import { Source } from '../../src/interfaces/Source';
 
 jest.mock('axios');
 
@@ -19,7 +19,7 @@ describe('getCsvMatchKeyReport', () => {
       source: Source.CSV,
       process: Process.MATCH_REPORT,
       algorithm: 'ai-medium',
-      csvUrl: 'https://dl.interzoid.com/csv/companies.csv',
+      fileUrl: 'https://dl.interzoid.com/csv/companies.csv',
       matchColumn: 1,
       apiKey: 'test-api-key',
       responseFormat: 'json',
@@ -43,7 +43,7 @@ describe('getCsvMatchKeyReport', () => {
       category: Category.COMPANY,
       source: Source.PARQUET,
       process: Process.MATCH_REPORT,
-      csvUrl: 'https://dl.interzoid.com/parquet/companies.parquet',
+      fileUrl: 'https://dl.interzoid.com/parquet/companies.parquet',
       matchColumn: 1,
       apiKey: 'test-api-key',
       responseFormat: 'json',
@@ -68,7 +68,7 @@ describe('getCsvMatchKeyReport', () => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       source: 'AWS Aurora MySQL',
-      csvUrl: 'https://dl.interzoid.com/csv/companies.csv',
+      fileUrl: 'https://dl.interzoid.com/csv/companies.csv',
       matchColumn: 1,
       apiKey: 'test-api-key',
       responseFormat: 'json',
@@ -84,7 +84,7 @@ describe('getCsvMatchKeyReport', () => {
       // @ts-ignore
       category: 'Person',
       source: Source.CSV,
-      csvUrl: 'https://dl.interzoid.com/csv/companies.csv',
+      fileUrl: 'https://dl.interzoid.com/csv/companies.csv',
       matchColumn: 1,
       apiKey: 'test-api-key',
       responseFormat: 'json',

@@ -2,8 +2,8 @@ import { DelimitedFileMatchKeyReportRequest } from '../interfaces/DelimitedFileM
 import { InterzoidApi } from './InterzoidApi';
 import { DelimitedFileMatchKeyReportResponse } from '../interfaces/DelimitedFileMatchKeyReportResponse';
 import { Source } from '../interfaces/Source';
-import { Process } from '../interfaces/Process';
 import { Category } from '../interfaces/Category';
+import { Process } from '../interfaces/Process';
 
 /**
  * getDelimitedFileMatchKeyReport reads a CSV or TSV file from a URL and returns a report of matching keys.
@@ -23,13 +23,15 @@ export async function getDelimitedFileMatchKeyReport(
     process: request.process || Process.MATCH_REPORT,
     table: request.source,
     source: request.source,
-    connection: request.csvUrl,
+    connection: request.fileUrl || request.csvUrl,
     category: request.category,
     column: request.matchColumn,
     algorithm: request.algorithm,
     reference: request.referenceColumn,
+    keysoutputall: request.keysOutputAll,
     json: request.responseFormat === 'json',
     html: request.responseFormat === 'html',
+    target: request.target,
     apikey: request.apiKey,
   };
 
@@ -51,9 +53,12 @@ function isValidCsvMatchKeyReportRequest(obj: any): {
   }
 
   // Validate csvUrl
-  if (!obj?.csvUrl || typeof obj.csvUrl !== 'string') {
+  if (
+    (!obj?.fileUrl || typeof obj.fileUrl !== 'string') &&
+    (!obj?.csvUrl || typeof obj.csvUrl !== 'string')
+  ) {
     isValid = false;
-    errors.push("Invalid 'csvUrl'.");
+    errors.push("Either 'fileUrl' or 'csvUrl' (deprecated) must be provided.");
   }
 
   // Validate source

@@ -7,5 +7,5 @@ docs/
 *.log
 .prettierrc
 jest.config.js
-.eslintrc.js
+eslint.config.mjs
 tsconfig.json

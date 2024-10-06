@@ -5,7 +5,7 @@ import { InterzoidRequest } from './InterzoidRequest';
  * @interface AddressMatchKeyRequest
  * @extends {InterzoidRequest}
  * @property {string} address - Address to match
- * @property {string} [algorithm] - Algorithm to use for matching
+ * @property {string} algorithm - Algorithm to use for matching
  */
 export interface AddressMatchKeyRequest extends InterzoidRequest {
   address: string;
@@ -14,6 +14,6 @@ export interface AddressMatchKeyRequest extends InterzoidRequest {
     | 'wide'
     | 'ai-plus-narrow'
     | 'ai-plus-wide'
-    | 'ai-medium-narrow'
+    | 'ai-medium-narrow' //recommended
     | 'ai-medium-wide';
 }

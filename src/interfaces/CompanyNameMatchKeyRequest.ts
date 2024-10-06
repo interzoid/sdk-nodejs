@@ -5,10 +5,16 @@ import { InterzoidRequest } from './InterzoidRequest';
  * @interface CompanyNameMatchKeyRequest
  * @extends {InterzoidRequest}
  * @property {string} company - Company name to match
- * @property {string} [algorithm] - Algorithm to use for matching
+ * @property {string} algorithm - Algorithm to use for matching
  */
 
 export interface CompanyNameMatchKeyRequest extends InterzoidRequest {
   company: string;
-  algorithm?: 'ai-plus' | 'ai-medium' | 'wide' | 'medium' | 'narrow';
+  algorithm?:
+    | 'wide'
+    | 'narrow'
+    | 'ai-plus-wide'
+    | 'ai-plus-narrow'
+    | 'ai-medium-wide'
+    | 'ai-medium-narrow'; //recommended
 }
